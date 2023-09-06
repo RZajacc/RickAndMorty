@@ -8,13 +8,13 @@ import '../style/navStyle.css';
 
 import { useState } from 'react';
 
-function NavSection() {
+function NavSection({getSearchValue}) {
 
   const [searchVal, setsearchVal] = useState("");
   
   const changeInputHandler = (event) => {
     setsearchVal(event.target.value);
-    console.log(searchVal);
+    getSearchValue(searchVal);
   }
 
     return (
