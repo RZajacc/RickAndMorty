@@ -29,10 +29,8 @@ function NavSection({getSearchValue}) {
                 onChange={changeInputHandler}
               />
             </InputGroup>
-
           </Col>
         </Row>  
-        
       </Container>
   )
 }
