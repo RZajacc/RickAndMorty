@@ -1,4 +1,7 @@
+
 import './App.css'
+import NavSection from './components/NavSection'
+
 
 
 function App() {
@@ -7,7 +10,9 @@ function App() {
   
   return (
     <>
-      
+      <NavSection/>
+      <div>This is main section</div>
+
     </>
   )
 }
