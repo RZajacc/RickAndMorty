@@ -6,27 +6,25 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 import '../style/navStyle.css';
 
-import { useState } from 'react';
 
-function NavSection({getSearchValue}) {
+function NavSection({setsearchVal}) {
 
-  const [searchVal, setsearchVal] = useState("");
-  
   const changeInputHandler = (event) => {
     setsearchVal(event.target.value);
-    getSearchValue(searchVal);
   }
+  
 
     return (
       <Container fluid >
         <Row  id='nav'>
           <Col xs={2}>
-            <InputGroup className='mb-3'>
+            <InputGroup className='mb-3' >
               <InputGroup.Text id="search-addon">Find characters</InputGroup.Text>
               <Form.Control
                 aria-label='searchKey'
                 aria-describedby='search-addon'
                 onChange={changeInputHandler}
+                id="input-field"
               />
             </InputGroup>
           </Col>

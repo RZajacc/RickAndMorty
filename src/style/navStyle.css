@@ -3,13 +3,21 @@
 }
 
 #nav {
-    background-color: #A8004E;
+    background-color: #20ADBB;
     height: 6rem;
     align-items: center;
     justify-content: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #nav:first-child{
     padding-top: 10px;
 }
 
+#search-addon {
+    background-color: #99C75E;
+}
+
+#input-field{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
