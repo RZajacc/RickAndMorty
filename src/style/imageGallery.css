@@ -16,12 +16,17 @@
     border-radius: 2%;
 }
 
+.images {
+    border-radius: 2%;
+}
+
 .flip-box-inner {
     position: relative;
     width: 100%;
     height: 100%;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    border-radius: 1%;
     
 }
 
@@ -36,6 +41,7 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    border-radius: 1%;
 }
 
 .flip-box-front {
@@ -54,4 +60,8 @@
 #learn-more {
     background-color: #20ADBB;
     border: none;
+}
+
+#character-modal {
+    text-align: center;
 }

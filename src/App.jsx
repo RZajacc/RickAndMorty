@@ -7,9 +7,6 @@ import Col from 'react-bootstrap/Col';
 import CharacterCard from './components/CharacterCard';
 
 
-
-
-
 function App() {
 
   const [searchVal, setsearchVal] = useState("");
