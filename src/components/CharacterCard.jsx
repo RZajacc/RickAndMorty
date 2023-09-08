@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -7,25 +7,50 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import MyModal from './MyModal';
 
-function CharacterCard({fetchData}) {
+function CharacterCard({searchVal}) {
   
-  const characters = fetchData.results;
-  const [charData, setcharData] = useState([])
-
+  
+  
+  const [characters, setCharacters] = useState([])
   const [show, setShow] = useState(false);
+  const [chardata, setcharData] = useState([])
+  
   const handleShow = (name, image, species, status) => {
     setcharData([name, image, species, status]);
     setShow(true);
   }
 
+  // * Fetch data from API
+  const url = "https://rickandmortyapi.com/api/character";
+
+  const fetchCharacters = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setCharacters(data.results);
+    } catch (error) {
+      console.log("Error ---->", error);
+    }
+  }
   
+  useEffect(() => {
+    fetchCharacters()
+  }, [])
+
+  const filteredCharacters = characters.filter((char) => {
+    let searchValLower = searchVal.toLowerCase();
+    let charNameLower = char.name.toLowerCase();
+    
+    return charNameLower.includes(searchValLower)
+  })
+   
   
   return (
     <>
       <Row className='justify-content-md-center'id='row'>
         <Col xs={10}>
-               <Row className="g-3" id='gallery' xs={5}>
-            {characters && characters.map((character, index) => (
+            <Row className="g-3" id='gallery' xs={5}>
+            {filteredCharacters && filteredCharacters.map((character, index) => (
               <Col key={index}>
                 <div className="flip-box">
                   <div className='flip-box-inner'>
@@ -50,7 +75,7 @@ function CharacterCard({fetchData}) {
         </Col>
       </Row>
 
-      <MyModal show={show} setShow={setShow} charData={charData} />
+      <MyModal show={show} setShow={setShow} charData={chardata} />
       
               
       
