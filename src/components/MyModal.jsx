@@ -4,10 +4,8 @@ import Button from 'react-bootstrap/Button';
 
 function MyModal({show, setShow, charData}) {
 
-    const handleClose = () => {
-        setShow(false);
-    }
-
+    const handleClose = () => setShow(false);
+    
     return (
 
     <Modal show={show} onHide={handleClose}>

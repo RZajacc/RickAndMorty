@@ -7,13 +7,12 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import MyModal from './MyModal';
 
-function CharacterCard({searchVal}) {
-  
-  
+function CharacterCard({searchVal, targetPage, setCharInfo}) {
   
   const [characters, setCharacters] = useState([])
   const [show, setShow] = useState(false);
   const [chardata, setcharData] = useState([])
+  
   
   const handleShow = (name, image, species, status) => {
     setcharData([name, image, species, status]);
@@ -21,13 +20,14 @@ function CharacterCard({searchVal}) {
   }
 
   // * Fetch data from API
-  const url = "https://rickandmortyapi.com/api/character";
+  const url = `https://rickandmortyapi.com/api/character?page=${targetPage}`;
 
   const fetchCharacters = async () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
       setCharacters(data.results);
+      setCharInfo(data.info);
     } catch (error) {
       console.log("Error ---->", error);
     }
@@ -35,16 +35,17 @@ function CharacterCard({searchVal}) {
   
   useEffect(() => {
     fetchCharacters()
-  }, [])
+  }, [targetPage])
 
+
+  
   const filteredCharacters = characters.filter((char) => {
     let searchValLower = searchVal.toLowerCase();
     let charNameLower = char.name.toLowerCase();
-    
+
     return charNameLower.includes(searchValLower)
   })
    
-  
   return (
     <>
       <Row className='justify-content-md-center'id='row'>
@@ -74,12 +75,8 @@ function CharacterCard({searchVal}) {
       </Row>
         </Col>
       </Row>
-
+      
       <MyModal show={show} setShow={setShow} charData={chardata} />
-      
-              
-      
-  
     </>
   )
 }
