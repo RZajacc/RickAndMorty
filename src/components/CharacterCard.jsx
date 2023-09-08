@@ -4,22 +4,22 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import '../style/imageGallery.css';
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
+import MyModal from './MyModal';
 
 function CharacterCard({fetchData}) {
   
   const characters = fetchData.results;
+  const [charData, setcharData] = useState([])
 
   const [show, setShow] = useState(false);
+  const handleShow = (name, image, species, status) => {
+    setcharData([name, image, species, status]);
+    setShow(true);
+  }
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
-   
   
   
-
   return (
     <>
       <Row className='justify-content-md-center'id='row'>
@@ -36,26 +36,11 @@ function CharacterCard({fetchData}) {
                     </div>
                     <div className='flip-box-back'> 
                       <h2>{character.name}</h2>
-                      <Button id='learn-more' onClick={() => {
-                        handleShow(character.name)
-                      }}>Learn more</Button>
-                   <Modal show={show} onHide={handleClose} id='character-modal'>
-                    <Modal.Header closeButton id='mod-title'>
-                      <Modal.Title >{character.name}</Modal.Title>
-                    </Modal.Header>
-                      <Modal.Body>
-                        {/* <img src={character.image}></img>
-                        <h2>Species: {character.species }</h2>
-                        <h3>Status: {character.status }</h3> */}
-                      </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Close
+                       <Button variant="success" onClick={() => {
+                        handleShow(character.name, character.image, character.species, character.status);
+                       }}>
+                        Show more information
                       </Button>
-                    </Modal.Footer>
-                  </Modal>
-                      
-
                     </div>
                   </div>
                 </div>                      
@@ -65,6 +50,9 @@ function CharacterCard({fetchData}) {
         </Col>
       </Row>
 
+      <MyModal show={show} setShow={setShow} charData={charData} />
+      
+              
       
   
     </>

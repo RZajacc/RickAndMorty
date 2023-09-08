@@ -62,6 +62,26 @@
     border: none;
 }
 
-#character-modal {
+
+.modal-body {
     text-align: center;
+}
+
+.modal-title {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.modal-header{
+    background-color: #20ADBB;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+#char-desc {
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 80px;
 }
